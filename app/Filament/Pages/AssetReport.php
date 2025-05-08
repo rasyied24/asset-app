@@ -9,6 +9,8 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Actions\Action; // yang benar
+
 
 class AssetReport extends Page implements HasTable
 {
@@ -24,6 +26,17 @@ class AssetReport extends Page implements HasTable
     protected function getTableQuery()
     {
         return Aset::query();
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('exportPdf')
+                ->label('Export PDF')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->url(route('aset.export.pdf'))
+                ->openUrlInNewTab(),
+        ];
     }
 
     protected function getTableColumns(): array

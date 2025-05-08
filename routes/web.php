@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportAsetController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/admin/login');
 });
+
+Route::get('/admin/aset/export/pdf', [ExportAsetController::class, 'export'])->name('aset.export.pdf');
