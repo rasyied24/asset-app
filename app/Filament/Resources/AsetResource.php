@@ -94,6 +94,12 @@ class AsetResource extends Resource
                     'hilang' => 'warning',
                     'baik' => 'success',
                     'rusak' => 'danger',
+                })
+                ->formatStateUsing(fn ($state) => match ($state) {
+                    'hilang' => 'Hilang',
+                    'baik' => 'Baik',
+                    'rusak' => 'Rusak',
+                    default => ucfirst($state),
                 }),
 
                 TextColumn::make('purchase_date')->label('Tgl Beli')->date(),
@@ -110,6 +116,7 @@ class AsetResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
