@@ -74,4 +74,13 @@ class AssetController extends Controller
     {
         //
     }
+
+    public function generateCode()
+    {
+        $latest = Aset::latest()->first();
+        $nextId = $latest ? $latest->id + 1 : 1;
+        $code = 'AST-' . str_pad($nextId, 4, '0', STR_PAD_LEFT);
+
+        return response()->json(['code' => $code]);
+    }
 }
