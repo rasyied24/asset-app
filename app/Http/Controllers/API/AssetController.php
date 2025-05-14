@@ -11,9 +11,24 @@ class AssetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Aset::all();
+        $query = Aset::query()->get();
+
+        if ($request->filled('q')) {
+            $search = $request->input('q');
+
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', "%{$search}%")
+                ->orWhere('kode', 'like', "%{$search}%");
+            });
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'List aset',
+            'data' => $query
+        ]);
     }
 
     /**

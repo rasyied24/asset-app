@@ -177,15 +177,15 @@
                     assets.forEach(function(asset) {
                         const row = `
                         <tr class="nk-tb-item">
-                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.code}</td>
-                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.name}</td>
-                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.category}</td>
-                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.departemen}</td>
-                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.condition}</td>
-                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.purchase_date}</td>
-                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">Rp ${asset.price ? asset.price.toLocaleString() : '-'}</td>
-                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.quantity}</td>
-                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.description ?? '-'}</td>
+                            <td class="nk-tb-col">${asset.code}</td>
+                            <td class="nk-tb-col">${asset.name}</td>
+                            <td class="nk-tb-col">${asset.category}</td>
+                            <td class="nk-tb-col">${asset.departemen}</td>
+                            <td class="nk-tb-col">${asset.condition}</td>
+                            <td class="nk-tb-col">${asset.purchase_date}</td>
+                            <td class="nk-tb-col">Rp ${asset.price ? asset.price.toLocaleString() : '-'}</td>
+                            <td class="nk-tb-col">${asset.quantity}</td>
+                            <td class="nk-tb-col">${asset.description ?? '-'}</td>
                         </tr>
 
                     `;

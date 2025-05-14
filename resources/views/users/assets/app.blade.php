@@ -55,6 +55,12 @@
                                         <span class="nk-menu-text">Aset</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="{{ url('users/laporan/aset') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-file"></em></span>
+                                        <span class="nk-menu-text">Laporan Aset</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
                             </ul><!-- .nk-menu -->
                         </div><!-- .nk-sidebar-menu -->
                     </div><!-- .nk-sidebar-content -->

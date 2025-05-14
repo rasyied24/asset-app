@@ -47,4 +47,8 @@ Route::middleware(['user.loggedin'])->group(function () {
     Route::get('/users/assets', function () {
         return view('users.assets.index');
     })->name('users.assets');
+
+    Route::get('/users/laporan/aset', function () {
+        return view('users.assets.laporan');
+    });
 });

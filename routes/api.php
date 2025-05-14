@@ -25,5 +25,6 @@ Route::post('logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/assets/generate-code', [AssetController::class, 'generateCode']);
+    Route::get('/assets/filter', [AssetController::class, 'index']);
     Route::apiResource('assets', AssetController::class);
 });
