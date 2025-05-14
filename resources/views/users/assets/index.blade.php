@@ -48,22 +48,25 @@
                                     </div><!-- .card-search -->
                                 </div><!-- .card-inner -->
                                 <div class="card-inner p-0">
-                                    <div class="nk-tb-list nk-tb-ulist is-compact">
-                                        <div class="nk-tb-item nk-tb-head">
-                                            <div class="nk-tb-col"><span class="sub-text">Kode</span></div>
-                                            <div class="nk-tb-col"><span class="sub-text">Nama</span></div>
-                                            <div class="nk-tb-col"><span class="sub-text">Kategori</span></div>
-                                            <div class="nk-tb-col"><span class="sub-text">Lokasi</span></div>
-                                            <div class="nk-tb-col"><span class="sub-text">Kondisi</span></div>
-                                            <div class="nk-tb-col"><span class="sub-text">Tgl Beli</span></div>
-                                            <div class="nk-tb-col"><span class="sub-text">Harga</span>
-                                            </div>
-                                            <div class="nk-tb-col"><span class="sub-text">Jumlah</span></div>
-                                            <div class="nk-tb-col"><span class="sub-text">Deskripsi</span></div>
-                                        </div><!-- .nk-tb-item -->
-                                        <div class="nk-tb-item" id="asset-list">
-                                        </div>
-                                    </div><!-- .nk-tb-list -->
+                                    <table class="nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false" data-searching="false" data-length-change="false" data-paging="false" data-info="false">
+                                        <thead>
+                                            <tr class="nk-tb-item nk-tb-head">
+                                                <th class="nk-tb-col"><span class="sub-text">Kode</span></th>
+                                                <th class="nk-tb-col"><span class="sub-text">Nama</span></th>
+                                                <th class="nk-tb-col"><span class="sub-text">Kategori</span></th>
+                                                <th class="nk-tb-col"><span class="sub-text">Departemen</span></th>
+                                                <th class="nk-tb-col"><span class="sub-text">Kondisi</span></th>
+                                                <th class="nk-tb-col"><span class="sub-text">Tgl Beli</span></th>
+                                                <th class="nk-tb-col"><span class="sub-text">Harga</span>
+                                                </th>
+                                                <th class="nk-tb-col"><span class="sub-text">Jumlah</span></th>
+                                                <th class="nk-tb-col"><span class="sub-text">Deskripsi</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="asset-list">
+
+                                        </tbody>
+                                    </table><!-- .nk-tb-item -->
                                 </div><!-- .card-inner -->
                             </div><!-- .card-inner-group -->
                         </div><!-- .card -->
@@ -95,8 +98,8 @@
                             <input type="text" class="form-control" id="category" name="category">
                         </div>
                         <div class="col-md-6">
-                            <label for="location" class="form-label">Lokasi</label>
-                            <input type="text" class="form-control" id="location" name="location">
+                            <label for="departemen" class="form-label">Departemen</label>
+                            <input type="text" class="form-control" id="departemen" name="departemen">
                         </div>
                         <div class="col-md-6">
                             <label for="condition" class="form-label">Kondisi</label>
@@ -121,6 +124,10 @@
                         <div class="col-md-6">
                             <label for="quantity" class="form-label">Jumlah</label>
                             <input type="number" class="form-control" id="quantity" name="quantity">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="description" class="form-label">Deskripsi</label>
+                            <input type="text" class="form-control" id="description" name="description">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -169,21 +176,17 @@
 
                     assets.forEach(function(asset) {
                         const row = `
-                        <div class="nk-tb-col">
-                            <div class="user-card">
-                                <div class="user-name">
-                                    <span class="tb-lead">${asset.code}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-tb-col">${asset.name}</div>
-                        <div class="nk-tb-col">${asset.category}</div>
-                        <div class="nk-tb-col">${asset.location}</div>
-                        <div class="nk-tb-col">${asset.condition}</div>
-                        <div class="nk-tb-col">${asset.purchase_date}</div>
-                        <div class="nk-tb-col">Rp ${asset.price ? asset.price.toLocaleString() : '-'}</div>
-                        <div class="nk-tb-col">${asset.quantity}</div>
-                        <div class="nk-tb-col">${asset.description ?? '-'}</div>
+                        <tr class="nk-tb-item">
+                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.code}</td>
+                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.name}</td>
+                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.category}</td>
+                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.departemen}</td>
+                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.condition}</td>
+                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.purchase_date}</td>
+                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">Rp ${asset.price ? asset.price.toLocaleString() : '-'}</td>
+                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.quantity}</td>
+                            <td class="nk-tb-col" style="padding-bottom:0%; padding-top:0%;">${asset.description ?? '-'}</td>
+                        </tr>
 
                     `;
                         container.append(row);
@@ -231,23 +234,16 @@
                 const code = $('#code').val();
                 const name = $('#name').val();
                 const category = $('#category').val();
-                const assetLocation = $('#location').val();
+                const departemen = $('#departemen').val();
                 const condition = $('#condition')
             .val(); // pastikan ini adalah salah satu dari 'baik', 'rusak', 'hilang'
                 const purchase_date = formatDateToSubmit($('#purchase_date').val()); // formatkan tanggal menjadi yyyy-mm-dd
                 const price = parseFloat($('#price').val()).toFixed(2);
                 const quantity = $('#quantity').val();
                 const description = $('#description').val(); // Bisa null jika tidak diisi
-                console.log('data1 ' + code);
-                console.log('data2 ' + name);
-                console.log('data3 ' + category);
-                console.log('data4 ' + assetLocation);
-                console.log('data5 ' + condition);
-                console.log('data6 ' + purchase_date);
-                console.log('data7 ' + price);
-                console.log('data8 ' + quantity);
+
                 // // Mengecek apakah data wajib sudah ada
-                if (!name || !category || !assetLocation || !condition || !purchase_date || !price || !
+                if (!name || !category || !departemen || !condition || !purchase_date || !price || !
                     quantity) {
                     alert('Semua kolom wajib diisi!');
                     return;
@@ -257,7 +253,7 @@
                     code: code, // code bisa otomatis di-generate dan dimasukkan di backend
                     name: name,
                     category: category,
-                    location: assetLocation,
+                    departemen: departemen,
                     condition: condition,
                     purchase_date: purchase_date,
                     price: price,

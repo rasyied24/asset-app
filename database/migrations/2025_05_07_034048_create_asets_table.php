@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('code')->unique();
             $table->string('category')->nullable();
-            $table->string('location')->nullable();
+            $table->string('departemen')->nullable();
             $table->enum('condition', ['baik', 'rusak', 'hilang'])->default('baik');
             $table->date('purchase_date')->nullable();
             $table->decimal('price', 15, 2)->nullable();

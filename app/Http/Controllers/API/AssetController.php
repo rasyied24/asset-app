@@ -32,7 +32,7 @@ class AssetController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'category' => 'required',
-            'location' => 'required',
+            'departemen' => 'required',
             'condition' => 'required|in:baik,rusak,hilang',
             'purchase_date' => 'required|date',
             'price' => 'required|numeric',

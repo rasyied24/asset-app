@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return redirect('/admin/login');
+    return redirect('/users/login');
 });
 
 Route::get('/users/login', function () {

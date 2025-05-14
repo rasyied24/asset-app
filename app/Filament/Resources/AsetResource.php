@@ -44,8 +44,8 @@ class AsetResource extends Resource
                     ->required()
                     ->maxLength(100),
 
-                Forms\Components\TextInput::make('location')
-                    ->label('Lokasi')
+                Forms\Components\TextInput::make('departemen')
+                    ->label('Departemen')
                     ->required()
                     ->maxLength(255),
 
@@ -87,7 +87,7 @@ class AsetResource extends Resource
                 TextColumn::make('code')->label('Kode')->searchable(),
                 TextColumn::make('name')->label('Nama')->searchable(),
                 TextColumn::make('category')->label('Kategori'),
-                TextColumn::make('location')->label('Lokasi'),
+                TextColumn::make('departemen')->label('Departemen'),
                 TextColumn::make('condition')->label('Kondisi')
                 ->badge()
                 ->color(fn (string $state): string => match ($state) {
