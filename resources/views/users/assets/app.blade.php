@@ -95,7 +95,7 @@
                                                 </div>
                                                 <div class="user-info d-none d-md-block">
                                                     <div class="user-status">Administrator</div>
-                                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                                                    <div class="user-name dropdown-indicator" id="user-name">Loading...</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -106,8 +106,8 @@
                                                         <span>AB</span>
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">Abu Bin Ishtiyak</span>
-                                                        <span class="sub-text">info@softnio.com</span>
+                                                        <span class="lead-text" id="user-name2">Loading...</span>
+                                                        <span class="sub-text" id="user-email">Loading...</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,6 +152,33 @@
     <!-- JavaScript -->
     <script src="{{ asset('assets/demo1/src/assets/js/bundle.js?ver=3.1.2') }}"></script>
     <script src="{{ asset('assets/demo1/src/assets/js/scripts.js?ver=3.1.2') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                $('#user-name').text('Guest');
+                return;
+            }
+
+            $.ajax({
+                url: '/api/me',
+                method: 'GET',
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
+                success: function(response) {
+                    $('#user-name').text(response.name); // ganti dengan response.username jika pakai itu
+                    $('#user-name2').text(response.name); // ganti dengan response.username jika pakai itu
+                    $('#user-email').text(response.email); // ganti dengan response.username jika pakai itu
+                },
+                error: function() {
+                    $('#user-name').text('Guest');
+                }
+            });
+        });
+    </script>
 
     @yield('scripts')
 </body>

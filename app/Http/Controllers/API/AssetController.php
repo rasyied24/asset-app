@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Aset;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class AssetController extends Controller
 {
@@ -13,21 +15,30 @@ class AssetController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Aset::query()->get();
+        $query = Aset::query();
 
         if ($request->filled('q')) {
             $search = $request->input('q');
 
             $query->where(function ($q) use ($search) {
-                $q->where('nama', 'like', "%{$search}%")
-                ->orWhere('kode', 'like', "%{$search}%");
+                $q->where('name', 'like', "%{$search}%")
+                ->orWhere('code', 'like', "%{$search}%");
             });
         }
+
+        $results = $query->get();
+
+        $results->transform(function ($item) {
+            $item->purchase_date = $item->purchase_date
+                ? Carbon::parse($item->purchase_date)->format('d-m-Y')
+                : null;
+            return $item;
+        });
 
         return response()->json([
             'status' => true,
             'message' => 'List aset',
-            'data' => $query
+            'data' => $results
         ]);
     }
 
@@ -97,5 +108,24 @@ class AssetController extends Controller
         $code = 'AST-' . str_pad($nextId, 4, '0', STR_PAD_LEFT);
 
         return response()->json(['code' => $code]);
+    }
+    public function exportPDF(Request $request)
+    {
+        $query = Aset::query();
+
+        if ($request->filled('q')) {
+            $search = $request->input('q');
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                ->orWhere('code', 'like', "%{$search}%");
+            });
+        }
+
+        $assets = $query->get();
+
+        $pdf = Pdf::loadView('exports.aset', ['asets' => $assets]);
+
+        return $pdf->download('laporan_aset.pdf');
     }
 }

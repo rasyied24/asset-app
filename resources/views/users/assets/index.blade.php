@@ -183,7 +183,7 @@
                             <td class="nk-tb-col">${asset.departemen}</td>
                             <td class="nk-tb-col">${asset.condition}</td>
                             <td class="nk-tb-col">${asset.purchase_date}</td>
-                            <td class="nk-tb-col">Rp ${asset.price ? asset.price.toLocaleString() : '-'}</td>
+                            <td class="nk-tb-col"> Rp ${asset.price ? Number(asset.price).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '-'} </td>
                             <td class="nk-tb-col">${asset.quantity}</td>
                             <td class="nk-tb-col">${asset.description ?? '-'}</td>
                         </tr>

@@ -24,7 +24,11 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth:api'])->group(function () {
+    Route::get('/me', function (Request $request) {
+        return response()->json($request->user());
+    });
     Route::get('/assets/generate-code', [AssetController::class, 'generateCode']);
     Route::get('/assets/filter', [AssetController::class, 'index']);
+    Route::get('/assets/export/pdf', [AssetController::class, 'exportPDF']);
     Route::apiResource('assets', AssetController::class);
 });

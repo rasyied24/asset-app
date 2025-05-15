@@ -17,7 +17,7 @@
                 <th>Kode</th>
                 <th>Nama</th>
                 <th>Kategori</th>
-                <th>Lokasi</th>
+                <th>Departemen</th>
                 <th>Kondisi</th>
                 <th>Tanggal Pembelian</th>
                 <th>Jumlah</th>
@@ -29,7 +29,7 @@
                     <td>{{ $aset->code }}</td>
                     <td>{{ $aset->name }}</td>
                     <td>{{ $aset->category }}</td>
-                    <td>{{ $aset->location }}</td>
+                    <td>{{ $aset->departemen }}</td>
                     <td>{{ ucfirst($aset->condition) }}</td>
                     <td>{{ \Carbon\Carbon::parse($aset->purchase_date)->format('d-m-Y') }}</td>
                     <td>{{ $aset->quantity }}</td>

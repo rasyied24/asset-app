@@ -32,7 +32,7 @@
                                                         </div>
                                                         <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
                                                             <div class="nk-sale-data">
-                                                                <span class="amount">9.69K</span>
+                                                                <span class="amount" id="total-assets">Loading..</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -67,6 +67,8 @@
                 },
                 success: function(response) {
                     console.log('User valid');
+                    const totalAssets = response.data.length;
+                    $('#total-assets').text(totalAssets.toLocaleString());
                     // Lanjut tampilkan dashboard
                 },
                 error: function() {
