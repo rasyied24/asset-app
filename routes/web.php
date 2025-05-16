@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AssetController;
+use App\Http\Controllers\AssetController as ControllersAssetController;
 use App\Http\Controllers\ExportAsetController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cookie;
@@ -47,6 +49,10 @@ Route::middleware(['user.loggedin'])->group(function () {
     Route::get('/users/assets', function () {
         return view('users.assets.index');
     })->name('users.assets');
+
+    Route::get('/assets/generate-code', [AssetController::class, 'generateCode']);
+
+    Route::resource('users/assets/data', AssetController::class);
 
     Route::get('/users/laporan/aset', function () {
         return view('users.assets.laporan');

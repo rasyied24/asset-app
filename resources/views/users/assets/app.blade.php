@@ -55,6 +55,13 @@
                                         <span class="nk-menu-text">Aset</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
+
+                                <li class="nk-menu-item">
+                                    <a href="{{ url('users/assets/data') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-view-col"></em></span>
+                                        <span class="nk-menu-text">Aset 2</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="{{ url('users/laporan/aset') }}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-file"></em></span>
